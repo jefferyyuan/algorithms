@@ -1,0 +1,55 @@
+
+<TITLE>Joggle Help</TITLE>
+<HTML>
+<HEAD>
+</HEAD>
+<BODY bgcolor="#FFFFFF">
+
+
+<H1>Joggle Help
+</H1>
+
+This is a terse explanation of some of the code that has
+been supplied in various Joggle classes.  If you're implementing
+a standalone JoggleAL, or your own Joggle Program (single user)
+not derived from JoggleAL , this may be relevant.
+ <P>
+The code in <TT>JoggleReader.java</TT> or <TT>FastJoggleReader.java</TT>
+(see the 
+<A HREF="http://www.cs.duke.edu/~gadde/cps108/fall96/java/joggle/">
+Joggle Web Page
+</A>for code details)  will load either a Vector or Trie with the
+words in the boggle dictionary.  I don't see any reason to store
+all the words in a vector, but you certainly can.  In any case,
+it doesn't really matter where the words are stored.  Once you've stored
+words, you can use various member functions to determine if a word
+is in the dictionary or on the board (these are useful for different
+things).
+ <P>
+If you use the Trie, there is a member function <TT>isWord(String s)</TT> 
+you can use to determine if a string is stored in the trie.  If you
+want to find where a string is on the board, use the 
+<TT>isWord()</TT>/<TT>checkString()</TT> combination of functions
+from <TT>JoggleGraph.java</TT>, but note that there's a line of code
+missing from older version --- the <TT>myVisited</TT> array isn't reset
+at the end fo the function <TT>checkString()</TT> before false is
+returned (the code is fixed in the HTML accessible class).
+ <P>
+To find the actual cubes, you'll need to use an array similar
+to <TT>myVisited</TT> (as Tafawa pointed out in a news post,
+the last cube that forms a word isn't marked in the <TT>JoggleGraph</TT>
+function <TT>checkString</TT>, you'll need to do this.)  In any case,
+<STRONG>you'll need to adapt the code in <TT>JoggleGraph</TT> to suit your
+purposes.</STRONG>  Probably the only code you can use "out of the box"
+is the <TT>FastJoggleReader</TT> (or slow reader) code.
+ <P>
+As far as the <TT>Trie</TT> class goes: I don't think you need to
+implement your own <TT>Recorder</TT> classes, but you can.  I
+implemented the <TT>Recorder</TT> interface to make it easier to do
+something to every element in a Trie, and to make Tries support the kind
+of Apply from C++ hashtable classes we used earlier in the semester.
+
+
+
+</BODY>
+</HTML>
