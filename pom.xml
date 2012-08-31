@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.codeexample</groupId>
-	<artifactId>codeexample-algorithms</artifactId>
+	<artifactId>algorithms-codeexample</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>codeexample-algorithms</name>
+	<name>algorithms-codeexample</name>
 	<url>http://jefferyyuan.blogspot.com</url>
 	<description>
 		This project contains some algorithm puzzles and their solutions.
@@ -24,8 +24,8 @@
 		</license>
 	</licenses>
 	<modules>
-		<module>codeexample-myAlgorithms</module>
-		<module>codeexample-collectedAlgorithms</module>
+		<module>algorithms-myAlgorithms</module>
+		<module>algorithms-collected</module>
 	</modules>
 	<developers>
 		<developer>
