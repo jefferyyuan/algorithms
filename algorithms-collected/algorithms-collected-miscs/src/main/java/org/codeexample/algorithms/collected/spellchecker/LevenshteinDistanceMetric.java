@@ -49,7 +49,7 @@ public class LevenshteinDistanceMetric
      * Calculates the distance between Strings x and y using the <b>Dynamic
      * Programming</b> algorithm.
      */
-    public final int distance(
+    public static final int distance(
             String x, String y)
     {
 
@@ -76,25 +76,25 @@ public class LevenshteinDistanceMetric
         return T[m][n];
     }
 
-    private int sub(
+    private static int sub(
             String x, int xi, String y, int yi)
     {
         return x.charAt(xi) == y.charAt(yi) ? 0 : 1;
     }
 
-    private int ins(
+    private static int ins(
             String x, int xi)
     {
         return 1;
     }
 
-    private int del(
+    private static int del(
             String x, int xi)
     {
         return 1;
     }
 
-    private int min(
+    private static int min(
             int a, int b, int c)
     {
         return Math.min(Math.min(a, b), c);
