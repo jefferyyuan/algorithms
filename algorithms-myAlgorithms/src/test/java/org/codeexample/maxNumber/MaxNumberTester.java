@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import org.codeexample.jefferyyuan.common.OverflowException;
 import org.codeexample.jefferyyuan.common.Utils;
 import org.codeexample.jefferyyuan.maxNumber.MaxNumber;
-import org.codeexample.jefferyyuan.maxNumber.MyComparator;
+//import org.codeexample.jefferyyuan.maxNumber.MyComparator;
 import org.junit.Test;
 public class MaxNumberTester {
 	// ############## Main test cases for MaxNumber
@@ -54,16 +54,16 @@ public class MaxNumberTester {
 	// ############## The following methods would test MyComparator class
 	// @Test
 	public void testMyComparator() {
-		MyComparator comparator = new MyComparator();
-		assertEquals(0, comparator.compare(8, 8));
-		assertEquals(0, comparator.compare(8, 88));
-		assertEquals(0, comparator.compare(8, 888));
-		assertEquals(1, comparator.compare(8, 87));
-		assertEquals(-1, comparator.compare(8, 89));
-		assertEquals(0, comparator.compare(88, 88));
-		assertEquals(0, comparator.compare(88, 888));
-		assertEquals(1, comparator.compare(88, 887));
-		assertEquals(-1, comparator.compare(88, 889));
+//		MyComparator comparator = new MyComparator();
+//		assertEquals(0, comparator.compare(8, 8));
+//		assertEquals(0, comparator.compare(8, 88));
+//		assertEquals(0, comparator.compare(8, 888));
+//		assertEquals(1, comparator.compare(8, 87));
+//		assertEquals(-1, comparator.compare(8, 89));
+//		assertEquals(0, comparator.compare(88, 88));
+//		assertEquals(0, comparator.compare(88, 888));
+//		assertEquals(1, comparator.compare(88, 887));
+//		assertEquals(-1, comparator.compare(88, 889));
 	}
 	// ############## The following methods would test Utils class
 	@Test
