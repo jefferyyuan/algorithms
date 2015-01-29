@@ -1,105 +1,70 @@
 package org.codeexample.algorithms.collected.string.substringsearch;
 
-/*  
- Name:   Ritika A. Muraraka
- Roll no: 45
- Batch: TE Comps
- Problem Statement: Given a string, check whether the pattern is present in the string or not using Knuth Morris Pratt Algorithm.
- */
+import java.io.IOException;
 
-import java.util.Scanner;
+public class KMP {
+	private int[] lps;
+	private String pat;
 
-class KMP
-{
-    static String str, pat;
+	public KMP(String pat) {
+		this.pat = pat;
+		lps = new int[pat.length()];
+		computLPSArray(pat);
+	}
 
-    public static void table(
-            String s, String p)
-    {
-        // char s[]=str.length();
-        // char p[]=pat.length();
-        char mat[][] = new char[s.length()][p.length() + 1];
-        for (int k = 0; k < p.length(); k++)
-        {
-            for (int i = 0; i < s.length(); i++)
-            {
-                for (int j = 0; j < p.length(); j++)
-                {
-                    if (s.charAt(i) == p.charAt(j) && j < p.length())
-                    {
-                        mat[k][j] = p.charAt(j + 1);
-                    }
-                    mat[k][j] = p.charAt(j);
-                }
+	private void computLPSArray(String pat) {
+		int M = pat.length();
+		int i = 1;
+		int len = 0; // lenght of the previous longest prefix suffix
 
-            }
-        }
-        for (int i = 0; i < s.length(); i++)
-        {
-            for (int j = 0; j < p.length(); j++)
-            {
-                System.out.print(mat[i][j] + "\t");
-            }
-            System.out.println();
-        }
-    }
+		while (i < M) {
+			if (pat.charAt(i) == pat.charAt(len)) {
+				len++;
+				lps[i] = len;
+				i++;
+			} else // (pat[i] != pat[len])
+			{
+				if (len != 0) {
+					// This is tricky. Consider the example AAACAAAA and i = 7.
+					len = lps[len - 1];
+					// Also, note that we do not increment i here
+				} else // if (len == 0)
+				{
+					lps[i] = 0;
+					i++;
+				}
+			}
+		}
+	}
 
-    static int[] failure(
-            String s)
-    {
-        char c[] = s.toCharArray();
-        int a[] = new int[c.length];
-        int i, j;
-        j = 0;
-        i = 1;
-        while (j < c.length)
-        {
-            if (c[i] == c[j])
-            {
-                i++;
-                j++;
-            }
-            else if (i > 0)
-                j++;
-            else
-                i = a[i - 1];
-        }
-        return a;
+	/** Function to find match for a pattern **/
+	public int search(String text) {
+		int i = 0, j = 0;
+		int lens = text.length();
+		int lenp = pat.length();
+		while (i < lens && j < lenp) {
+			if (text.charAt(i) == pat.charAt(j)) {
+				i++;
+				j++;
+			} else if (j != 0) {
+				j = lps[j - 1] + 1;
+			} else {
+				i++;
+			}
+		}
+		return ((j == lenp) ? (i - lenp) : -1);
+	}
 
-    }
-
-    public static void main(
-            String args[])
-    {
-
-        Scanner cin = new Scanner(System.in);
-        System.out.println("Enter the string from which you want to search:");
-        str = cin.next();
-        System.out.println("Enter the pattern to be searched:");
-        pat = cin.next();
-        int a[] = failure(pat);
-        int i = 0, j = 0;
-        while (j < pat.length() && j < str.length())
-        {
-            if (str.charAt(i) == pat.charAt(j))
-            {
-                i++;
-                j++;
-            }
-            else if (j > 0)
-                j = a[j - 1];
-            else
-            {
-                i++;
-            }
-        }
-        if (j == pat.length())
-        {
-            System.out.println("The string is found");
-            System.out.println("The position is:" + (i - j));
-            table(str, pat);
-        }
-        else
-            System.out.println("The string is not found. Please enter another string");
-    }
+	/** Main Function **/
+	public static void main(String[] args) throws IOException {
+		// BufferedReader br = new BufferedReader(new
+		// InputStreamReader(System.in));
+		// System.out.println("Knuth Morris Pratt Test\n");
+		// System.out.println("\nEnter Text\n");
+		// String text = br.readLine();
+		// System.out.println("\nEnter Pattern\n");
+		// String pattern = br.readLine();
+		KMP kmp = new KMP("AABAACAABAA");
+		System.out.println(kmp.search("aAABAACAABAAa"));
+	}
 }
